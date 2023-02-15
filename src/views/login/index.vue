@@ -1,71 +1,22 @@
-<template>
-  <div class="container login_container">
-    <div class="login_container_box">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="0" class="demo-ruleForm"
-               size="large" status-icon>
-        <el-form-item>
-          <h3 class="title">nuzn管理系统平台</h3>
-        </el-form-item>
-        <el-form-item prop="username">
-          <el-input clearable v-model="ruleForm.username" :prefix-icon="User"/>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input show-password clearable v-model="ruleForm.password" :prefix-icon="Lock"/>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef)" style="width: 100%">登录</el-button>
-        </el-form-item>
-        <el-form-item>
-          <div class="tips">
-            <p>管理员：admin 123456</p>
-            <p>普通用户：test 123456</p>
-          </div>
-        </el-form-item>
-      </el-form>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
-import {reactive, ref} from 'vue';
-import {FormInstance, FormRules, ElMessage} from 'element-plus';
-import {useUserInfo} from '/@/stores/userInfo';
-import {initBackEnd} from '/@/router/backEnd';
-import {Login} from '/@/api/login';
-import {Session} from '/@/utils/storage';
-import {useRoute, useRouter} from 'vue-router';
-import {Lock, User} from '@element-plus/icons-vue'
+import { onMounted } from 'vue';
+import { ElMessage } from 'element-plus';
+import { useUserInfo } from '/@/stores/userInfo';
+import { initBackEnd } from '/@/router/backEnd';
+import { Login } from '/@/api/login';
+import { Session } from '/@/utils/storage';
+import { useRoute, useRouter } from 'vue-router';
 // 获取路由信息
 let route = useRoute();
 // 路由调整信息
 let routers = useRouter();
-// 表单ref
-const ruleFormRef = ref<FormInstance>();
-// 登录表单
-const ruleForm = reactive({
-  username: 'admin',
-  password: '123456',
-});
-// 验证规则
-const rules = reactive<FormRules>({
-  username: [
-    {required: true, message: '用户名必填', trigger: ['blur', 'change']},
-    {min: 3, max: 16, message: '请输入 3 到 16个字符', trigger: ['blur', 'change']},
-  ],
-  password: [
-    {required: true, message: '密码必填', trigger: ['blur', 'change']},
-    {min: 3, max: 16, message: '请输入 3 到 16个字符', trigger: ['blur', 'change']},
-  ],
-});
-// 提交表单
-const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  await formEl.validate(async (valid) => {
-    if (valid) {
-      // 登录
-      let {data, code}: any = await Login({
-        username: ruleForm.username,
-        password: ruleForm.password,
-      });
+onMounted(() => {
+  let btn: any = document.querySelector(".login-content .login-content-submit .btn")
+  btn.addEventListener("click", () => {
+    let user: any = document.querySelector("#inputAccountExampleUser")
+    let pass: any = document.querySelector("#inputPasswordExamplePass")
+    Login({ username: user.value, password: pass.value }).then(async (res: any) => {
+      const { code, data } = res
       if (code != 1000) return ElMessage.error(data)
       // 存储用户信息
       let info = useUserInfo();
@@ -84,39 +35,73 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       } else {
         routers.push('/home');
       }
-    }
-  });
-};
+    })
+  })
+})
 </script>
+<template>
+  <div class="login">
+    <div class="container">
+      <div class="login-content">
+        <div class="login-content-logo ">
+          <img src="https://blog.dbsgw.com/logo.png" alt="前端笔记">
+        </div>
+        <div class="login-content-user">
+          <div class="input-control has-icon-left">
+            <input id="inputAccountExampleUser" type="text" class="form-control" placeholder="用户名" value="">
+            <label for="inputAccountExampleUser" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+          </div>
+        </div>
+        <div class="login-content-pass">
+          <div class="input-control has-icon-left">
+            <input id="inputPasswordExamplePass" type="password" class="form-control" placeholder="密码" value="">
+            <label for="inputPasswordExamplePass" class="input-control-icon-left"><i class="icon icon-key"></i></label>
+          </div>
+        </div>
+        <div class="login-content-submit">
+          <button class="btn btn-block btn-primary" type="button">登录</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
-<style scoped lang="scss">
-.login_container {
-  min-height: 100%;
+<style scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f7f8fa;
+}
+
+.container {
   width: 100%;
-  color: #fff;
-  background-color: #2d3a4b;
-  overflow: hidden;
+  background-color: var(--bag);
+  height: auto;
+}
 
-  .login_container_box {
-    width: 520px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.login-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px -5px rgb(0 0 0 / 30%);
+}
 
-    .title {
-      font-size: 26px;
-      color: #eee;
-      margin: 0 auto 30px auto;
-      text-align: center;
-      font-weight: 700;
-    }
+.login-content>div {
+  padding: 8px;
+  width: 100%;
+}
 
-    .tips {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-    }
-  }
+.login-content-logo {
+  text-align: center;
+}
+
+.login-content-logo img {
+  width: 150px;
 }
 </style>
+
