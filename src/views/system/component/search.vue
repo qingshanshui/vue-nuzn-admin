@@ -1,13 +1,13 @@
 <template>
   <div class="search">
-    <el-input class="search-input" v-model="formInline" placeholder="请输入"/>
+    <el-input class="search-input" v-model="formInline" placeholder="请输入" />
     <el-button type="primary" @click="onSearch">查询</el-button>
     <el-button type="success" @click="onAdd">新增{{ props.searchData.title || '---' }}</el-button>
-  </div>
+</div>
 </template>
 
 <script setup lang="ts">
-import {ref, defineEmits, defineProps} from 'vue';
+import { ref, defineEmits, defineProps } from 'vue';
 
 // 接收props参数
 const props = defineProps({

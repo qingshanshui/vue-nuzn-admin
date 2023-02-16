@@ -1,4 +1,4 @@
-import {createI18n} from 'vue-i18n';
+import { createI18n } from 'vue-i18n';
 
 // 引入 el 语言
 import enLocale from 'element-plus/lib/locale/lang/en';
@@ -10,10 +10,10 @@ import en from './en';
 
 import pinia from '/@/stores/index';
 // 解构赋值 响应式的 pinia
-import {storeToRefs} from 'pinia';
-import {useThemeConfig} from '/@/stores/themeConfig';
+import { storeToRefs } from 'pinia';
+import { useThemeConfig } from '/@/stores/themeConfig';
 const stores = useThemeConfig(pinia);
-const {themeConfig} = storeToRefs(stores);
+const { themeConfig } = storeToRefs(stores);
 
 // 创建 i18n
 export const i18n = createI18n({

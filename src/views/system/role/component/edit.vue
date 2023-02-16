@@ -30,7 +30,7 @@
 				<el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
 			</span>
 		</template>
-	</el-dialog>
+</el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -44,18 +44,18 @@ const ruleFormRef = ref<FormInstance>();
 
 // 表达 数据
 const ruleForm = reactive({
-  name: null,
-  remark: null,
-  order: null,
-  status: null,
-  uid:null,
+	name: null,
+	remark: null,
+	order: null,
+	status: null,
+	uid: null,
 });
 
 // 表单验证规则
 const rules = reactive<FormRules>({
-  name: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
-  ],
+	name: [
+		{ required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
+	],
 });
 
 // 弹框 ref
@@ -89,13 +89,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 				});
 				emit('onSubmit');
 				hide();
-			}else {
-        ElNotification({
-          title: '编辑失败',
-          message: res.data,
-          type: 'error',
-        });
-      }
+			} else {
+				ElNotification({
+					title: '编辑失败',
+					message: res.data,
+					type: 'error',
+				});
+			}
 		}
 	});
 };

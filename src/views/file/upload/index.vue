@@ -8,7 +8,7 @@
               <span>表单上传</span>
             </div>
           </template>
-          <FromFile/>
+          <FromFile />
         </el-card>
       </el-col>
       <el-col>
@@ -18,7 +18,7 @@
               <span>FormDate+axios上传</span>
             </div>
           </template>
-          <FormData/>
+          <FormData />
         </el-card>
       </el-col>
       <el-col>
@@ -28,11 +28,11 @@
               <span>大文件上传（FormDate + 切片）</span>
             </div>
           </template>
-          <ChunkFile/>
+          <ChunkFile />
         </el-card>
       </el-col>
     </el-row>
-  </div>
+</div>
 </template>
 <script setup lang="ts">
 import FromFile from './component/fromFile.vue';

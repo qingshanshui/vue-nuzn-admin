@@ -4,59 +4,59 @@
       <el-row>
         <el-col :span="12">
           <el-form-item label="昵称" prop="nickname">
-            <el-input v-model="ruleForm.nickname"/>
+            <el-input v-model="ruleForm.nickname" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="账号" prop="username">
-            <el-input v-model="ruleForm.username" disabled/>
+            <el-input v-model="ruleForm.username" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="手机号" prop="telephone">
-            <el-input v-model="ruleForm.telephone" disabled/>
+            <el-input v-model="ruleForm.telephone" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="邮箱" prop="email">
-            <el-input v-model="ruleForm.email" disabled/>
+            <el-input v-model="ruleForm.email" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="关联角色" prop="role">
             <el-select v-model="ruleForm.role" placeholder="请选择">
-              <el-option v-for="(v, i) in state.role" :key="i" :label="v.name" :value="v.uid"/>
+              <el-option v-for="(v, i) in state.role" :key="i" :label="v.name" :value="v.uid" />
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="性别" prop="sex">
             <el-select v-model="ruleForm.sex" placeholder="请选择">
-              <el-option label="男" value="0"/>
-              <el-option label="女" value="1"/>
+              <el-option label="男" value="0" />
+              <el-option label="女" value="1" />
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="状态" prop="status">
-            <el-switch v-model="ruleForm.status" :active-value="1" :inactive-value="0"/>
+            <el-switch v-model="ruleForm.status" :active-value="1" :inactive-value="0" />
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
     <template #footer>
-			<span class="dialog-footer">
-				<el-button @click="hide()">取消</el-button>
-				<el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
-			</span>
+      <span class="dialog-footer">
+        <el-button @click="hide()">取消</el-button>
+        <el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
+      </span>
     </template>
-  </el-dialog>
+</el-dialog>
 </template>
 
 <script setup lang="ts">
-import {ref, reactive, onMounted, defineEmits} from 'vue';
-import {GetRoleList, EditUserList} from '/@/api/system';
-import {ElNotification, FormInstance, FormRules} from 'element-plus';
+import { ref, reactive, onMounted, defineEmits } from 'vue';
+import { GetRoleList, EditUserList } from '/@/api/system';
+import { ElNotification, FormInstance, FormRules } from 'element-plus';
 
 // 表单 ref
 const ruleFormRef = ref<FormInstance>();
@@ -110,19 +110,19 @@ const hide = () => {
 // 表单验证规则
 const rules = reactive<FormRules>({
   nickname: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
   username: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
   telephone: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
   password: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
   role: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
 });
 
@@ -155,7 +155,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const emit = defineEmits(['onSubmit']);
 
 // // 向外暴露函数
-defineExpose({hide, show});
+defineExpose({ hide, show });
 </script>
 
 <style scoped lang="scss"></style>

@@ -1,5 +1,5 @@
-import {defineStore} from "pinia"
-import {Local} from "/@/utils/storage";
+import { defineStore } from "pinia"
+import { Local } from "/@/utils/storage";
 
 /**
  * 系统设置
@@ -14,9 +14,9 @@ export const useThemeConfig = defineStore('themeConfig', {
             // 深色模式，false 白色 true 深色
             isIsDark: false,
             // 水印
-            isWarTerMark:false,
+            isWarTerMark: false,
             // 水印字体
-            warTerMarkText:"nuzn"
+            warTerMarkText: "nuzn"
         },
     }),
     actions: {

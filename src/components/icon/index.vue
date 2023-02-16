@@ -1,11 +1,11 @@
 <template>
-  <i v-if="isShowIconFontIcon" class="iconfont" :class="props.name"/>
+  <i v-if="isShowIconFontIcon" class="iconfont" :class="props.name" />
   <el-icon v-else>
-    <component :is="props.name"/>
-  </el-icon>
+    <component :is="props.name" />
+</el-icon>
 </template>
 <script setup lang="ts">
-import {defineProps, computed} from 'vue'
+import { defineProps, computed } from 'vue'
 
 const props = defineProps({
   name: {

@@ -4,40 +4,40 @@
       <el-row>
         <el-col :span="12">
           <el-form-item label="角色名称" prop="name">
-            <el-input v-model="ruleForm.name"/>
+            <el-input v-model="ruleForm.name" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="备注" prop="remark">
-            <el-input v-model="ruleForm.remark"/>
+            <el-input v-model="ruleForm.remark" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="排序" prop="order">
-            <el-input v-model.number="ruleForm.order"/>
+            <el-input v-model.number="ruleForm.order" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="状态" prop="status">
-            <el-switch v-model="ruleForm.status" :active-value="1" :inactive-value="0"/>
+            <el-switch v-model="ruleForm.status" :active-value="1" :inactive-value="0" />
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
     <template #footer>
-			<span class="dialog-footer">
-				<el-button @click="hide()">取消</el-button>
-				<el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
-			</span>
+      <span class="dialog-footer">
+        <el-button @click="hide()">取消</el-button>
+        <el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
+      </span>
     </template>
-  </el-dialog>
+</el-dialog>
 </template>
 
 <script setup lang="ts">
-import {ref, defineExpose, reactive, defineEmits} from 'vue';
-import type {FormInstance, FormRules} from 'element-plus';
-import {AddRoleList} from '/@/api/system';
-import {ElNotification} from 'element-plus';
+import { ref, defineExpose, reactive, defineEmits } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
+import { AddRoleList } from '/@/api/system';
+import { ElNotification } from 'element-plus';
 
 // 表单 ref
 const ruleFormRef = ref<FormInstance>();
@@ -53,7 +53,7 @@ const ruleForm = reactive({
 // 表单验证规则
 const rules = reactive<FormRules>({
   name: [
-    {required: true, message: '必填项不能为空', trigger: ['blur', 'change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
 });
 
@@ -84,7 +84,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         });
         emit('onSubmit');
         hide();
-      }else {
+      } else {
         ElNotification({
           title: '添加失败',
           message: res.data,
@@ -99,7 +99,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const emit = defineEmits(['onSubmit']);
 
 // 向外暴露函数
-defineExpose({hide, show});
+defineExpose({ hide, show });
 </script>
 
 <style scoped lang="scss"></style>

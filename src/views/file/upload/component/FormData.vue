@@ -3,15 +3,15 @@
     <img :src="state.src" alt="" id="img">
     <input type="file" name="file" id="file" @change="changeUpload">
     <el-button @click="handelClickUpload" type="primary">上传</el-button>
-  </div>
+</div>
 </template>
 
 <script setup lang="ts">
-import {reactive, getCurrentInstance} from "vue";
-import {SaveUpload} from '/@/api/file'
+import { reactive, getCurrentInstance } from "vue";
+import { SaveUpload } from '/@/api/file'
 
 // 获取上下文
-const {proxy} = <any>getCurrentInstance()
+const { proxy } = <any>getCurrentInstance()
 
 // 上传文件
 const handelClickUpload = async () => {
@@ -27,7 +27,7 @@ const handelClickUpload = async () => {
 
 // 定义FormState接口
 interface FormState {
-  src: string | ArrayBuffer | null;
+  src: any;
   files: any;
 }
 

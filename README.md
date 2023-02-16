@@ -1,37 +1,21 @@
-# vue-nuzn-admin
+<!--
+ * @Description: 
+ * @Author: 刘洋
+ * @Date: 2022-07-25 19:44:13
+ * @LastEditTime: 2022-07-28 21:52:17
+ * @LastEditors: xxx
+-->
 
-#### 介绍
-vue-nuzn-admin的vue3后台管理系统
+# `vue-nuzn-admin`vue3后台管理系统
 
-#### 软件架构
-软件架构说明
+## 项目目标
 
+1. 登录鉴权(实现token登录，动态路由)
+2. rebc(rebc页面的curd)
+3. 切换模板
+4. 全屏水印
+5. 多语言
+6. 切换暗黑模式
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 项目问题
+1. bug 使用vue推荐的router-view slot代码会影响transition的过渡效果

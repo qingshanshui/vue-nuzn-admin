@@ -2,18 +2,18 @@
   <div class="user-container">
     <el-row>
       <el-col>
-        <Search @onAdd="onAdd" @onSearch="onSearch" :searchData="{title: '用户'}"/>
+        <Search @onAdd="onAdd" @onSearch="onSearch" :searchData="{ title: '用户' }" />
       </el-col>
       <el-col>
         <el-table :data="state.tableData" style="width: 100%">
-          <el-table-column type="index" label="序号" width="60"/>
-          <el-table-column prop="uid" label="uid" show-overflow-tooltip/>
-          <el-table-column prop="nickname" label="昵称" show-overflow-tooltip/>
-          <el-table-column prop="username" label="账号" show-overflow-tooltip/>
-          <el-table-column prop="telephone" label="手机号" show-overflow-tooltip/>
-          <el-table-column prop="email" label="邮箱" show-overflow-tooltip/>
-          <el-table-column prop="order" label="关联角色" show-overflow-tooltip/>
-          <el-table-column prop="sex" label="性别" width="80" align="center"/>
+          <el-table-column type="index" label="序号" width="60" />
+          <el-table-column prop="uid" label="uid" show-overflow-tooltip />
+          <el-table-column prop="nickname" label="昵称" show-overflow-tooltip />
+          <el-table-column prop="username" label="账号" show-overflow-tooltip />
+          <el-table-column prop="telephone" label="手机号" show-overflow-tooltip />
+          <el-table-column prop="email" label="邮箱" show-overflow-tooltip />
+          <el-table-column prop="order" label="关联角色" show-overflow-tooltip />
+          <el-table-column prop="sex" label="性别" width="80" align="center" />
           <el-table-column prop="desc" label="状态" width="80" align="center">
             <template #default="scope">
               <el-tag type="success" v-if="scope.row.status">启用</el-tag>
@@ -28,14 +28,8 @@
           <el-table-column prop="operations" label="操作" width="160" align="center">
             <template #default="scope">
               <el-button size="small" @click="editUser(scope.row)">修改</el-button>
-              <el-popconfirm
-                  confirm-button-text="Yes"
-                  cancel-button-text="No"
-                  :icon="InfoFilled"
-                  icon-color="#626AEF"
-                  title="确定要删除吗？"
-                  @confirm="delUser(scope.row)"
-              >
+              <el-popconfirm confirm-button-text="Yes" cancel-button-text="No" :icon="InfoFilled" icon-color="#626AEF"
+                title="确定要删除吗？" @confirm="delUser(scope.row)">
                 <template #reference>
                   <el-button size="small" type="danger">删除</el-button>
                 </template>
@@ -45,19 +39,19 @@
         </el-table>
       </el-col>
     </el-row>
-    <CreateUserModel ref="createUsers" @onSubmit="onSubmit"/>
-    <EditUserModel ref="editUsers" @onSubmit="onSubmit"/>
-  </div>
+    <CreateUserModel ref="createUsers" @onSubmit="onSubmit" />
+    <EditUserModel ref="editUsers" @onSubmit="onSubmit" />
+</div>
 </template>
 <script setup lang="ts">
-import {onMounted, reactive, ref} from 'vue';
-import {GetUserList, DelUserList} from '/@/api/system';
+import { onMounted, reactive, ref } from 'vue';
+import { GetUserList, DelUserList } from '/@/api/system';
 import moment from 'moment';
 import Search from '/@/views/system/component/search.vue';
 import CreateUserModel from '/@/views/system/user/component/create.vue';
 import EditUserModel from '/@/views/system/user/component/edit.vue';
-import {ElNotification} from 'element-plus';
-import {InfoFilled} from '@element-plus/icons-vue'
+import { ElNotification } from 'element-plus';
+import { InfoFilled } from '@element-plus/icons-vue'
 
 // 刷新表格数据
 const onSubmit = () => {
@@ -88,7 +82,7 @@ const editUser = (row: any) => {
 
 // 删除用户
 const delUser = async (row: any) => {
-  let res: any = await DelUserList({uid: row.uid});
+  let res: any = await DelUserList({ uid: row.uid });
   if (res.code == 1000) {
     ElNotification({
       title: '删除成功',
@@ -96,7 +90,7 @@ const delUser = async (row: any) => {
       type: 'success',
     });
     await initTableData();
-  }else {
+  } else {
     ElNotification({
       title: '删除失败',
       message: res.data,

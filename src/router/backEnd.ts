@@ -1,10 +1,10 @@
-import {RouteRecordRaw} from 'vue-router';
-import {GetUserInfo} from "/@/api/login";
-import {dynamicRoutes, notFoundAndNoPower} from "/@/router/route"
-import {router} from "/@/router/index";
-import {routerLists} from '/@/stores/routerList'
-import {arrayToTree} from '/@/utils/tool'
-import {NextLoading} from "/@/utils/loading";
+import { RouteRecordRaw } from 'vue-router';
+import { GetUserInfo } from "/@/api/login";
+import { dynamicRoutes, notFoundAndNoPower } from "/@/router/route"
+import { router } from "/@/router/index";
+import { routerLists } from '/@/stores/routerList'
+import { arrayToTree } from '/@/utils/tool'
+import { NextLoading } from "/@/utils/loading";
 import { ElMessage } from 'element-plus'
 /**
  * 获取.vue 所有文件
@@ -12,7 +12,7 @@ import { ElMessage } from 'element-plus'
 const layoutModules: any = import.meta.glob('../layout/**/**.{vue,tsx}');
 const viewsModules: any = import.meta.glob('../views/**/**.{vue,tsx}');
 
-const dynamicViewsModules: Record<string, Function> = Object.assign({...layoutModules}, {...viewsModules});
+const dynamicViewsModules: Record<string, Function> = Object.assign({ ...layoutModules }, { ...viewsModules });
 
 
 /**
@@ -26,14 +26,14 @@ export async function initBackEnd() {
     // 获取后端路由
     let res: any = await GetUserInfo()
     if (res.code !== 1000) {
-        setTimeout(()=>{
+        setTimeout(() => {
             NextLoading.done()
             ElMessage({
                 showClose: true,
                 message: res.data,
                 type: 'error',
             })
-        },1000)
+        }, 1000)
         return false
     }
     let a = arrayToTree(res.data, 0)

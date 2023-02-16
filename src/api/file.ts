@@ -6,7 +6,7 @@ export function SaveUpload(data: object) {
         url: '/basic/files/upload/formFile',
         method: 'post',
         data: data,
-        headers:{
+        headers: {
             'Content-Type': 'multipart/form-data'
         }
     });
@@ -18,7 +18,7 @@ export function chunkFile(data: object) {
         url: '/basic/files/upload/chunkFile',
         method: 'post',
         data: data,
-        headers:{
+        headers: {
             'Content-Type': 'multipart/form-data'
         }
     });
@@ -30,7 +30,7 @@ export function mergeFile(data: object) {
         url: '/basic/files/upload/mergeFile',
         method: 'post',
         data: data,
-        headers:{
+        headers: {
             'Content-Type': 'multipart/form-data'
         }
     });

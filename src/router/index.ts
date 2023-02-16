@@ -1,9 +1,9 @@
-import {createRouter, createWebHistory} from 'vue-router';
-import {dynamicRoutes, notFoundAndNoPower} from './route';
-import {Session} from '/@/utils/storage';
+import { createRouter, createWebHistory } from 'vue-router';
+import { dynamicRoutes, notFoundAndNoPower } from './route';
+import { Session } from '/@/utils/storage';
 import NProgress from 'nprogress';
-import {initBackEnd} from '/@/router/backEnd';
-import {routerLists} from '/@/stores/routerList';
+import { initBackEnd } from '/@/router/backEnd';
+import { routerLists } from '/@/stores/routerList';
 
 // 创建 路由实例
 export const router = createRouter({
@@ -13,7 +13,7 @@ export const router = createRouter({
 
 // 路由加载前
 router.beforeEach(async (to, from, next) => {
-    NProgress.configure({showSpinner: false});
+    NProgress.configure({ showSpinner: false });
     const token = Session.get('token');
     if (to.path === '/login' && !token) {
         next();
@@ -32,11 +32,11 @@ router.beforeEach(async (to, from, next) => {
             // 先取 缓存路由数据看看    有就放行  没有就获取路由在放行
             let rootViewList = routerLists();
             if (rootViewList.routesList.length === 0) {
-                let bool: boolean|undefined = await initBackEnd();
+                let bool: boolean | undefined = await initBackEnd();
                 if (bool) {
                     console.log(rootViewList.routesList.length, "rootViewList.routesList.length")
-                    next({path: to.path});
-                }else {
+                    next({ path: to.path });
+                } else {
                     Session.clear()
                     next(`/login`);
                 }

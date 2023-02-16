@@ -3,23 +3,23 @@
     <img :src="state.src" alt="" id="img">
     <input type="file" name="file" id="file" @change="changeUpload">
     <el-button @click="handelClickUpload" type="primary" :loading="state.loading">上传</el-button>
-  </div>
+</div>
 </template>
 
 <script setup lang="ts">
-import {reactive, getCurrentInstance} from "vue";
-import {chunkFile, mergeFile} from '/@/api/file'
-import {nanoid} from "nanoid";
+import { reactive, getCurrentInstance } from "vue";
+import { chunkFile, mergeFile } from '/@/api/file'
+import { nanoid } from "nanoid";
 
 // 获取上下文
-const {proxy} = <any>getCurrentInstance()
+const { proxy } = <any>getCurrentInstance()
 
 // 开始上传
 const handelClickUpload = async () => {
   state.loading = true
   try {
     // 创建切片
-    let fileChunks:any = [] // 切片集合数组
+    let fileChunks: any = [] // 切片集合数组
     // let size = 1024 * 1024 * 10; // 10MB 切片大小
     let size = 1024 * 1024; // 1m 切片大小
     let index = 0 // 切片序号
@@ -59,7 +59,7 @@ const handelClickUpload = async () => {
 
 // 定义 FormState 接口
 interface FormState {
-  src: string | ArrayBuffer | null;
+  src: any;
   files: any;
   loading: boolean,
 }

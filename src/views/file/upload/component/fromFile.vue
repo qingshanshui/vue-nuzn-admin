@@ -5,15 +5,15 @@
       <input type="file" name="file" id="file">
       <el-button type="primary" native-type="submit">上传</el-button>
     </form>
-  </div>
+</div>
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue";
+import { reactive } from "vue";
 
 // FormState 接口
 interface FormState {
-  src: string | ArrayBuffer | null;
+  src: any;
 }
 
 // 数据源

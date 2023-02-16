@@ -1,14 +1,14 @@
 <template>
   <el-icon>
-    <Edit/>
+    <Edit />
   </el-icon>
   <i class="iconfont icon-pingtaiguanli"></i>
   <NzunIcon name="icon-pingtaiguanli"></NzunIcon>
   <NzunIcon name="Edit"></NzunIcon>
-  <el-table mb-1 :data="[]"/>
+  <el-table mb-1 :data="[]" />
   <div>home78789</div>
   {{ $t('nuzn.name') }}
-  {{ $t('el.table.emptyText') }}
+{{ $t('el.table.emptyText') }}
 </template>
 <script setup lang="ts">
 </script>

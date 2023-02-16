@@ -4,8 +4,8 @@
       <el-row>
         <el-col :span="24">
           <el-form-item label="上级菜单" prop="parentUid">
-            <el-cascader style="width: 100%" v-model="ruleForm.parentUid" :options="state.tableData"
-                         :props="cascadeProps" placeholder="请选择上级菜单"/>
+            <el-cascader style="width: 100%" v-model="ruleForm.parentUid" :options="state.tableData" :props="cascadeProps"
+              placeholder="请选择上级菜单" />
           </el-form-item>
         </el-col>
         <el-col :span="24">
@@ -18,50 +18,50 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="菜单title" prop="title">
-            <el-input v-model="ruleForm.title"/>
+            <el-input v-model="ruleForm.title" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="组件名称" prop="name">
-            <el-input v-model="ruleForm.name"/>
+            <el-input v-model="ruleForm.name" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="路由路径" prop="path">
-            <el-input v-model="ruleForm.path"/>
+            <el-input v-model="ruleForm.path" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="重定向" prop="redirect">
-            <el-input v-model="ruleForm.redirect"/>
+            <el-input v-model="ruleForm.redirect" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="组件路径" prop="component">
-            <el-input v-model="ruleForm.component"/>
+            <el-input v-model="ruleForm.component" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="菜单排序" prop="order">
-            <el-input v-model.number="ruleForm.order"/>
+            <el-input v-model.number="ruleForm.order" />
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
     <template #footer>
-			<span class="dialog-footer">
-				<el-button @click="hide()">取消</el-button>
-				<el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
-			</span>
+      <span class="dialog-footer">
+        <el-button @click="hide()">取消</el-button>
+        <el-button type="primary" @click="submitForm(ruleFormRef)">确认</el-button>
+      </span>
     </template>
-  </el-dialog>
+</el-dialog>
 </template>
 
 <script setup lang="ts">
-import {ref, defineExpose, reactive, defineEmits} from 'vue';
-import type {FormInstance, FormRules} from 'element-plus';
-import {EditMenuList} from '/@/api/system';
-import {ElNotification} from 'element-plus';
+import { ref, defineExpose, reactive, defineEmits } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
+import { EditMenuList } from '/@/api/system';
+import { ElNotification } from 'element-plus';
 
 // 表单ref
 const ruleFormRef = ref<FormInstance>();
@@ -81,22 +81,22 @@ const ruleForm = reactive({
 // 表单验证规则
 const rules = reactive<FormRules>({
   parentUid: [
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
-  type:[
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+  type: [
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
-  title:[
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+  title: [
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
   path: [
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
-  name:[
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+  name: [
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
-  component:[
-    {required: true, message: '必填项不能为空', trigger: ['blur','change']},
+  component: [
+    { required: true, message: '必填项不能为空', trigger: ['blur', 'change'] },
   ],
 });
 
@@ -152,7 +152,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         });
         emit('onSubmit');
         hide();
-      }else {
+      } else {
         ElNotification({
           title: '编辑失败',
           message: res.data,
@@ -165,7 +165,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 // 子传父传值
 const emit = defineEmits(['onSubmit']);
 // 向外暴露函数
-defineExpose({hide, show});
+defineExpose({ hide, show });
 </script>
 
 <style scoped lang="scss"></style>
